@@ -4,46 +4,150 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InnoMail Library Demo</title>
-    <script src="https://github.com/BOSS294/innoMail/blob/31265272ce780c71f4f96c209cc888f29867442a/innoMail.js"></script>
+    <script src="https://programmerslife.store/InnoMail/innoMail.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f4f4f9;
+            background: url('https://github.com/BOSS294/NeoPopup/blob/main/4060492.jpg?raw=true') no-repeat center center fixed;
+            background-size: cover;
+            color: #FFD700;
         }
-        button {
+
+        .container {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 20px 40px;
+            text-align: center;
+            width: 90%;
+            max-width: 1800px;
+            transform: perspective(1000px) translateZ(0px);
+        }
+
+        .container h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        }
+
+        .description {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #f5d142;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background: #222;
+            color: #FFD700;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+            padding: 20px;
+            width: 250px;
+            height: 200px;
+            text-align: center;
+            transform: translateZ(0px) rotateX(0deg);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.5);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
+        .buttons button {
             padding: 10px 20px;
-            font-size: 16px;
-            background-color: #007BFF;
-            color: #fff;
+            font-size: 1rem;
+            margin: 10px;
+            background-color: #FFD700;
+            color: #000;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease;
         }
-        button:hover {
-            background-color: #0056b3;
+
+        .buttons button:hover {
+            background-color: #f5d142;
+            transform: translateY(-5px);
         }
     </style>
 </head>
 <body>
-    <h1>Send Email Using InnoMail</h1>
-    <button onclick="sendTestEmail()">Send Test Email</button>
+    <div class="container">
+        <h1>InnoMail V1.0</h1>
+        <p class="description">
+            InnoMail is your one-stop solution for effortless email integration. Experience fast, secure, and easy-to-use features for sending professional emails.
+        </p>
+
+        <div class="card-container">
+            <div class="card">
+                <h3>Benefits</h3>
+                <p>Quick integration, easy setup, and reliable email delivery with enhanced security.</p>
+            </div>
+            <div class="card">
+                <h3>Features</h3>
+                <p>Supports Mailjet API, handles templates, and ensures smooth communication with your users.</p>
+            </div>
+            <div class="card">
+                <h3>How to Use?</h3>
+                <p>Simply import InnoMail, call the `sendEmail()` function, and you're ready to go!</p>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <input type="email" id="recipientEmail" placeholder="Enter your email"style="padding: 10px; margin-right: 10px; border-radius: 5px; border: 1px solid #FFD700; font-size: 1rem;"/>
+            <button onclick="window.open('https://github.com/BOSS294/innoMail', '_blank')">GitHub Repo</button>
+            <button onclick="sendTestEmail()">Let’s Test</button>
+            <button onclick="window.open('https://www.instagram.com/mayankchawdhari/?hl=en', '_blank')">Follow Developer</button>
+        </div>
+    </div>
 
     <script>
         function sendTestEmail() {
-            const recipientEmail = 'mayankchawdhari@gmail.com'; // Test email address
-            const subject = 'Test Email from InnoMail';
-            const message = 'This is a test email sent using the InnoMail library and Mailjet API.';
-            
+            const recipientEmail = document.getElementById('recipientEmail').value.trim();
+    
+            if (!recipientEmail) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+    
+            const subject = '🚀 Discover InnoMail: Simplify Your Email Integration!';
+            const message = `
+                <h1 style="color: #FFD700;">Welcome to InnoMail!</h1>
+                <p>InnoMail makes sending emails easy, fast, and secure. Start integrating email functionality today.</p>
+                <p><a href="https://github.com/BOSS294/innoMail" style="color: #FFD700;">Explore InnoMail</a></p>
+            `;
+    
             sendEmail(recipientEmail, subject, message)
                 .then(data => {
-                    alert('Email sent successfully!');
+                    alert(`Email sent successfully to ${recipientEmail}!`);
                 })
                 .catch(error => {
                     alert('Failed to send email: ' + error.message);
