@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnoMail Library Demo</title>
+    <script src="InnoMail.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Send Email Using InnoMail</h1>
+    <button onclick="sendTestEmail()">Send Test Email</button>
+
+    <script>
+        function sendTestEmail() {
+            const recipientEmail = 'mayankchawdhari@gmail.com'; // Test email address
+            const subject = 'Test Email from InnoMail';
+            const message = 'This is a test email sent using the InnoMail library and Mailjet API.';
+            
+            sendEmail(recipientEmail, subject, message)
+                .then(data => {
+                    alert('Email sent successfully!');
+                })
+                .catch(error => {
+                    alert('Failed to send email: ' + error.message);
+                });
+        }
+    </script>
+</body>
+</html>
